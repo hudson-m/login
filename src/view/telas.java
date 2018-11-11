@@ -8,9 +8,7 @@ import java.util.Scanner;
 
 import javax.swing.JOptionPane;
 
-import login.connection;
 import login.main;
-import models.users;
 
 public class telas extends main {
 
@@ -75,6 +73,7 @@ public class telas extends main {
 			ResultSet rs = ps3.executeQuery();
 			if (rs.next()) {
 				JOptionPane.showMessageDialog(null, "username and password matched");
+				System.out.println("Nome: "+rs.getString(2)+" "+rs.getString(3)+" \nUsuário: "+rs.getString(4)+" \nCPF: "+rs.getString(6));
 
 			} else {
 				JOptionPane.showMessageDialog(null, "username and password do not matched");
