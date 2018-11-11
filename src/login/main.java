@@ -29,9 +29,10 @@ public class main {
             //getting database connection to MySQL server
         	Connection dbCon = DriverManager.getConnection("jdbc:mysql://localhost/?user=hudson&password=admin");
         	PreparedStatement ps = dbCon.prepareStatement("CREATE DATABASE IF NOT EXISTS databasename");
-        	dbCon = DriverManager.getConnection("jdbc:mysql://localhost/databasename","hudson","admin");
         	ps.executeUpdate();
-        	dbCon.prepareStatement("CREATE TABLE IF NOT EXISTS user ( " + 
+        	dbCon = DriverManager.getConnection("jdbc:mysql://localhost/databasename","hudson","admin");
+        	
+        	ps = dbCon.prepareStatement("CREATE TABLE IF NOT EXISTS user ( " + 
             		"        idNo INT(64) NOT NULL AUTO_INCREMENT, " + 
             		"        nome VARCHAR(20) NOT NULL," + 
             		"        sobrenome VARCHAR(20) NOT NULL," + 

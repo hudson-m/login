@@ -35,7 +35,7 @@ public class telas extends main {
 		System.out.println("cab�!");
 
 		try {
-			Connection dbCon = DriverManager.getConnection("jdbc:mysql://localhost/?user=hudson&password=admin");
+			Connection dbCon = DriverManager.getConnection("jdbc:mysql://localhost/databasename","hudson","admin");
 			// the mysql insert statement
 
 			// create the mysql insert preparedstatement
