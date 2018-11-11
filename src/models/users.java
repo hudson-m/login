@@ -2,27 +2,35 @@ package models;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
-public class users {
+import login.connection;
+import login.main;
+import view.telas;
 
-	private String username;
-	private String password;
-	private String[][] accounts = {{"jesper", "abc123"},{"batata","batata"}};
+public class users extends telas{
 
+	telas username;
+	String password;
 
-	
-
-	public users(String user, String pass) {
-		username = user;
-		password = pass;
-	}
-
-	public boolean auth() { // pelo amor de deus, como que faz a verifica��o se ta certo
-		if ((username.equals(accounts[0][0])) && (password.equals(accounts[0][1])))
-			return true;
-		else
-			return false;
-	}
+//	public boolean auth() { // pelo amor de deus, como que faz a verifica��o se ta certo
+//		String sql = "select * from login where username=? and password=?";
+//		try {
+//			Connection dbCon = DriverManager.getConnection("jdbc:mysql://localhost/testsql", "root", "");
+//			PreparedStatement ps3 = dbCon.prepareStatement(sql);
+//			ps3.setString(1, username);
+//			ps3.setString(2, password);
+//			ResultSet rs = ps3.executeQuery();
+//			if (rs.next()) {
+//				JOptionPane.showMessageDialog(null, "username and password matched");
+//
+//			} else {
+//				JOptionPane.showMessageDialog(null, "username and password do not matched");
+//			}
+//		} catch (SQLException | HeadlessException ex) {
+//			JOptionPane.showMessageDialog(null, ex);
+//		}
+//	}
 }

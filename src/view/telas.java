@@ -3,14 +3,17 @@ package view;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.Scanner;
+
+import javax.swing.JOptionPane;
 
 import login.connection;
 import login.main;
 import models.users;
 
 public class telas extends main {
-	
+
 	main prepareStatement = new main();
 	Scanner in = new Scanner(System.in);
 	String username, nome, sobrenome, password, cpf;
@@ -35,23 +38,24 @@ public class telas extends main {
 		System.out.println("cab�!");
 
 		try {
-			Connection dbCon = DriverManager.getConnection("jdbc:mysql://localhost/databasename","hudson","admin");
+			Connection dbCon = DriverManager.getConnection("jdbc:mysql://localhost/databasename", "hudson", "admin");
 			// the mysql insert statement
 
 			// create the mysql insert preparedstatement
-			PreparedStatement ps2 = dbCon.prepareStatement(" insert into " + "user" + " (nome, sobrenome, username, password, cpf)"
-					+ " values (?, ?, ?, ?, ?)");
+			PreparedStatement ps2 = dbCon.prepareStatement(" insert into " + "user"
+					+ " (nome, sobrenome, username, password, cpf)" + " values (?, ?, ?, ?, ?)");
 			ps2.setString(1, nome);
 			ps2.setString(2, sobrenome);
 			ps2.setString(3, username);
 			ps2.setString(4, password);
 			ps2.setString(5, cpf);
 			ps2.executeUpdate();
-		      
+
 			dbCon.close();
 		} catch (Exception e) {
 			e.printStackTrace();
-		} 
+		}
+		prepareStatement.main(null);
 
 	}
 
@@ -62,13 +66,23 @@ public class telas extends main {
 		System.out.println("Pass:");
 		password = in.nextLine();
 
-		users check = new users(username, password);
+		String sql = "select * from user where username=? and password=?";
+		try {
+			Connection dbCon = DriverManager.getConnection("jdbc:mysql://localhost/databasename", "hudson", "admin");
+			PreparedStatement ps3 = dbCon.prepareStatement(sql);
+			ps3.setString(1, username);
+			ps3.setString(2, password);
+			ResultSet rs = ps3.executeQuery();
+			if (rs.next()) {
+				JOptionPane.showMessageDialog(null, "username and password matched");
 
-		if (check.auth()) // Se auth der boa, gg
-		{
-			System.out.println("Logadasso!");
-			System.out.println("Informa�oes dos users");
+			} else {
+				JOptionPane.showMessageDialog(null, "username and password do not matched");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
+
 	}
 
 }
