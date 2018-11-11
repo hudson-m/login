@@ -17,9 +17,6 @@ public class main {
 		String dbName = "user";
 		int select;
 		
-        String dbURL = "jdbc:mysql://localhost:3306/"+dbName;
-        String username ="root";
-        String password = "";
         String jdbcDriver = "com.mysql.cj.jdbc.Driver";
         Statement stmt;
         
@@ -38,7 +35,7 @@ public class main {
             		"        sobrenome VARCHAR(20) NOT NULL," + 
             		"        username VARCHAR(20) NOT NULL," +
             		"        password VARCHAR(128) NOT NULL," +
-            		"        cpf VARCHAR(11) NOT NULL, PRIMARY KEY (`idNo`))");  
+            		"        cpf VARCHAR(11) NOT NULL, PRIMARY KEY (`idNo`), UNIQUE (username), UNIQUE (cpf))");  
         	ps.executeUpdate();
             
             try {
