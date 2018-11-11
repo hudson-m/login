@@ -1,17 +1,17 @@
 package view;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.util.Scanner;
 
 import login.connection;
+import login.main;
 import models.users;
 
-public class telas extends connection {
+public class telas extends main {
 	
-	
-	Connection con;
-
+	main prepareStatement = new main();
 	Scanner in = new Scanner(System.in);
 	String username, nome, sobrenome, password, cpf;
 
@@ -35,30 +35,23 @@ public class telas extends connection {
 		System.out.println("cab�!");
 
 		try {
+			Connection dbCon = DriverManager.getConnection("jdbc:mysql://localhost/?user=hudson&password=admin");
 			// the mysql insert statement
-			String query = " insert into " + dbName + " (nome, sobrenome, username, password, cpf)"
-					+ " values (?, ?, ?, ?, ?)";
 
 			// create the mysql insert preparedstatement
-			PreparedStatement prestmt = con.prepareStatement(query);
-			prestmt.setString(1, nome);
-			prestmt.setString(2, sobrenome);
-			prestmt.setString(3, username);
-			prestmt.setString(4, password);
-			prestmt.setString(5, cpf);
-			prestmt.execute();
+			PreparedStatement ps2 = dbCon.prepareStatement(" insert into " + "user" + " (nome, sobrenome, username, password, cpf)"
+					+ " values (?, ?, ?, ?, ?)");
+			ps2.setString(1, nome);
+			ps2.setString(2, sobrenome);
+			ps2.setString(3, username);
+			ps2.setString(4, password);
+			ps2.setString(5, cpf);
+			ps2.executeUpdate();
 		      
-		    con.close();
+			dbCon.close();
 		} catch (Exception e) {
 			e.printStackTrace();
-		} finally {
-			if (prestmt != null) {
-				try {
-					prestmt.close();
-				} catch (Exception ignored) {
-				}
-			}
-		}
+		} 
 
 	}
 

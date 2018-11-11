@@ -23,8 +23,8 @@ public class connection {
 		
 		try
 		{
-			Class.forName("com.mysql.jdbc.Driver");
-			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/"+dbName+"", "root", "");
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/"+dbName+"", "hudson", "admin");
 			stmt = con.prepareStatement("INSERT INTO user	VALUES(nome,sobrenome,cpf,username,password)");
 			
 		}catch(	Exception e)
