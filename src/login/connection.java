@@ -47,7 +47,7 @@ public class connection {
 
     public void createTableCub1() {
     	
-        table = "CREATE TABLE user ( " + 
+        table = "CREATE TABLE IF NOT EXISTS user ( " + 
         		"        idNo INT(64) NOT NULL AUTO_INCREMENT, " + 
         		"        nome VARCHAR(20) NOT NULL," + 
         		"        sobrenome VARCHAR(20) NOT NULL," + 

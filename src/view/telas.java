@@ -1,18 +1,15 @@
 package view;
 
-import java.sql.Statement;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.util.Scanner;
+
 import login.connection;
 import models.users;
 
-import java.util.Scanner;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
-
 public class telas extends connection {
+	
+	
 	Connection con;
 
 	Scanner in = new Scanner(System.in);
