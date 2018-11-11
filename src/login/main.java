@@ -1,5 +1,9 @@
 package login;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.Scanner;
 import view.telas;
 import models.users;
@@ -21,7 +25,7 @@ public class main {
 		if(select == 1) {
 			roda.cadastro();
 		}
-		
+		in.close();
 	}
 
 }
